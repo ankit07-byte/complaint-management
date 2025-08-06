@@ -26,19 +26,83 @@ const StudentSignup = () => {
     });
   };
 
+  const validateForm = () => {
+    if (!formData.name) {
+      toast.error('Please enter your full name');
+      return false;
+    }
+
+    if (!formData.rollNo) {
+      toast.error('Please enter your roll number');
+      return false;
+    }
+
+    if (!formData.email) {
+      toast.error('Please enter your email');
+      return false;
+    }
+
+    if (!formData.email.endsWith('@bitmesra.ac.in')) {
+      toast.error('Please use your BIT Mesra email address');
+      return false;
+    }
+
+    if (!formData.mobile) {
+      toast.error('Please enter your mobile number');
+      return false;
+    }
+
+    if (formData.mobile.length !== 10 || !/^\d+$/.test(formData.mobile)) {
+      toast.error('Please enter a valid 10-digit mobile number');
+      return false;
+    }
+
+    if (!formData.session) {
+      toast.error('Please enter your academic session');
+      return false;
+    }
+  
+    // Validate academic session format (YYYY-YY)
+    const sessionRegex = /^20\d{2}-[0-9]{2}$/;
+    if (!sessionRegex.test(formData.session)) {
+      toast.error('Please enter academic session in correct format (YYYY-YY)');
+      return false;
+    }
+    
+
+    if (!formData.department) {
+      toast.error('Please select your department');
+      return false;
+    }
+
+    if (!formData.password) {
+      toast.error('Please enter a password');
+      return false;
+    }
+
+    if (formData.password.length < 8) {
+      toast.error('Password must be at least 8 characters long');
+      return false;
+    }
+
+    if (!formData.confirmPassword) {
+      toast.error('Please confirm your password');
+      return false;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.error('Passwords do not match');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     
-    // Validate form
-    if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match');
-      setLoading(false);
-      return;
-    }
-    
-    if (!formData.email.endsWith('@bitmesra.ac.in')) {
-      toast.error('Please use your BIT Mesra email address');
+    if (!validateForm()) {
       setLoading(false);
       return;
     }
@@ -146,6 +210,7 @@ const StudentSignup = () => {
                     name="mobile"
                     type="tel"
                     required
+                    maxLength="10"
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-sm"
                     value={formData.mobile}
                     onChange={handleChange}
@@ -154,22 +219,22 @@ const StudentSignup = () => {
               </div>
 
               <div>
-                <label htmlFor="session" className="block text-xs sm:text-sm font-medium text-gray-700">
-                  Academic Session (YYYY-YY)
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="session"
-                    name="session"
-                    type="text"
-                    required
-                    placeholder="e.g., 2023-24"
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-sm"
-                    value={formData.session}
-                    onChange={handleChange}
-                  />
-                </div>
+              <label htmlFor="session" className="block text-xs sm:text-sm font-medium text-gray-700">
+                Academic Session (YYYY-YY)
+              </label>
+              <div className="mt-1">
+                <input
+                  id="session"
+                  name="session"
+                  type="text"
+                  required
+                  placeholder="e.g., 2020-24"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-sm"
+                  value={formData.session}
+                  onChange={handleChange}
+                />
               </div>
+            </div>
 
               <div>
                 <label htmlFor="department" className="block text-xs sm:text-sm font-medium text-gray-700">
@@ -206,7 +271,7 @@ const StudentSignup = () => {
 
               <div>
                 <label htmlFor="password" className="block text-xs sm:text-sm font-medium text-gray-700">
-                  Password
+                  Password (min 8 characters)
                 </label>
                 <div className="mt-1">
                   <input
