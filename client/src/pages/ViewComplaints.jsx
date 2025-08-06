@@ -90,13 +90,13 @@ const ViewComplaints = () => {
         <title>View Complaints | BIT Mesra Complaint System</title>
       </Helmet>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">View Complaints</h1>
+      <div className="max-w-6xl mx-auto px-2 sm:px-4 py-4">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">View Complaints</h1>
 
-        <div className="bg-white shadow rounded-lg p-6 mb-6">
-          <h2 className="text-lg font-medium text-gray-800 mb-4">Filters</h2>
+        <div className="bg-white shadow rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
+          <h2 className="text-md sm:text-lg font-medium text-gray-800 mb-3 sm:mb-4">Filters</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-3 sm:gap-4">
             <div>
               <label htmlFor="hostelNo" className="block text-sm font-medium text-gray-700">
                 Hostel No
@@ -152,18 +152,18 @@ const ViewComplaints = () => {
             </div>
           </div>
 
-          <div className="flex justify-end space-x-3 mt-4">
+          <div className="flex justify-end space-x-2 sm:space-x-3 mt-4">
             <button
               onClick={clearFilters}
-              className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition"
+              className="px-3 sm:px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition text-sm sm:text-base"
             >
               Clear
             </button>
             <button
               onClick={applyFilters}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+              className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm sm:text-base"
             >
-              Apply Filters
+              Apply
             </button>
           </div>
         </div>
@@ -173,13 +173,13 @@ const ViewComplaints = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Token</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Problem</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Token</th>
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Problem</th>
+                  <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned</th>
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -192,17 +192,17 @@ const ViewComplaints = () => {
                 ) : (
                   complaints.map(complaint => (
                     <tr key={complaint._id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{complaint.token}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{complaint.type}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{complaint.token}</td>
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{complaint.type}</td>
+                      <td className="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {complaint.student?.name} ({complaint.student?.rollNo})
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{complaint.subType}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">{complaint.subType}</td>
+                      <td className="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {complaint.assignedTo?.name || '-'}
                         {complaint.assignedTo?.designation && ` (${complaint.assignedTo.designation})`}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
                           ${complaint.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                             complaint.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
@@ -211,7 +211,7 @@ const ViewComplaints = () => {
                           {complaint.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {new Date(complaint.createdAt).toLocaleDateString()}
                       </td>
                     </tr>

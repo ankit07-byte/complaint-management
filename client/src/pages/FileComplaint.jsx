@@ -52,23 +52,22 @@ const FileComplaint = () => {
     }
   };
 
-
   return (
     <>
       <Helmet>
         <title>File Complaint | BIT Mesra Complaint System</title>
       </Helmet>
 
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        <div className="bg-white shadow rounded-lg p-6">
-          <h1 className="text-2xl font-bold text-gray-800 mb-6">File a Complaint</h1>
+      <div className="max-w-2xl mx-auto px-4 py-4 sm:py-8">
+        <div className="bg-white shadow rounded-lg p-4 sm:p-6">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">File a Complaint</h1>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Complaint Type
               </label>
-              <div className="flex space-x-4">
+              <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
                 <label className="inline-flex items-center">
                   <input
                     type="radio"
@@ -96,7 +95,7 @@ const FileComplaint = () => {
 
             {formData.type === 'Hostel' && (
               <>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="hostelNo" className="block text-sm font-medium text-gray-700">
                       Hostel No (1-13)
@@ -186,7 +185,6 @@ const FileComplaint = () => {
                 </select>
               </div>
             )}
-
 
             <div>
               <label htmlFor="description" className="block text-sm font-medium text-gray-700">

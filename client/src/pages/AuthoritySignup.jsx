@@ -22,7 +22,6 @@ const AuthoritySignup = () => {
     setFormData(prev => ({
       ...prev,
       [name]: value,
-      // Clear hostelNo when Network Department is selected
       ...(name === 'designation' && value === 'Network Department' && { hostelNo: '' })
     }));
   };
@@ -68,14 +67,15 @@ const AuthoritySignup = () => {
     <>
       <Helmet>
         <title>Authority Signup | BIT Mesra Complaint System</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Helmet>
       
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-2 text-center text-2xl sm:text-3xl font-extrabold text-gray-900">
             Create authority account
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-xs sm:text-sm text-gray-600">
             Already have an account?{' '}
             <Link to="/authority-login" className="font-medium text-blue-600 hover:text-blue-500">
               Sign in
@@ -83,11 +83,11 @@ const AuthoritySignup = () => {
           </p>
         </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+        <div className="mt-6 sm:mt-8 mx-auto w-full max-w-md">
+          <div className="bg-white py-6 px-4 shadow rounded-lg sm:py-8 sm:px-10">
+            <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-700">
                   Full Name
                 </label>
                 <input
@@ -95,14 +95,14 @@ const AuthoritySignup = () => {
                   name="name"
                   type="text"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-sm"
                   value={formData.name}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-700">
                   College Email (@bitmesra.ac.in)
                 </label>
                 <input
@@ -110,14 +110,14 @@ const AuthoritySignup = () => {
                   name="email"
                   type="email"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-sm"
                   value={formData.email}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="mobile" className="block text-xs sm:text-sm font-medium text-gray-700">
                   Mobile Number (India)
                 </label>
                 <input
@@ -125,21 +125,21 @@ const AuthoritySignup = () => {
                   name="mobile"
                   type="tel"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-sm"
                   value={formData.mobile}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="designation" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="designation" className="block text-xs sm:text-sm font-medium text-gray-700">
                   Designation
                 </label>
                 <select
                   id="designation"
                   name="designation"
                   required
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-xs sm:text-sm border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md"
                   value={formData.designation}
                   onChange={handleChange}
                 >
@@ -151,17 +151,16 @@ const AuthoritySignup = () => {
                 </select>
               </div>
 
-              {/* Only show hostel selection for Hostel Clerk or Warden */}
               {(formData.designation === 'Hostel Clerk' || formData.designation === 'Warden') && (
                 <div>
-                  <label htmlFor="hostelNo" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="hostelNo" className="block text-xs sm:text-sm font-medium text-gray-700">
                     Hostel No (1-13)
                   </label>
                   <select
                     id="hostelNo"
                     name="hostelNo"
                     required={formData.designation === 'Hostel Clerk' || formData.designation === 'Warden'}
-                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                    className="mt-1 block w-full pl-3 pr-10 py-2 text-xs sm:text-sm border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md"
                     value={formData.hostelNo}
                     onChange={handleChange}
                   >
@@ -174,7 +173,7 @@ const AuthoritySignup = () => {
               )}
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="password" className="block text-xs sm:text-sm font-medium text-gray-700">
                   Password
                 </label>
                 <input
@@ -183,14 +182,14 @@ const AuthoritySignup = () => {
                   type="password"
                   required
                   minLength="8"
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-sm"
                   value={formData.password}
                   onChange={handleChange}
                 />
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="confirmPassword" className="block text-xs sm:text-sm font-medium text-gray-700">
                   Confirm Password
                 </label>
                 <input
@@ -199,7 +198,7 @@ const AuthoritySignup = () => {
                   type="password"
                   required
                   minLength="8"
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-sm"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 />
@@ -209,7 +208,7 @@ const AuthoritySignup = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xs sm:text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
                   {loading ? 'Signing up...' : 'Sign up'}
                 </button>

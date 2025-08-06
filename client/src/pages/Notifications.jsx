@@ -3,7 +3,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from '../context/AuthContext';
 
-
 const Notifications = () => {
   const [formData, setFormData] = useState({ title: "", message: "", hostel: "" });
   const [pdf, setPdf] = useState(null);
@@ -12,7 +11,6 @@ const Notifications = () => {
 
   const { user } = useContext(AuthContext);
   const currentHostel = user?.hostelNo || 'all'; 
-
 
   const fetchNotifications = async () => {
     try {
@@ -62,31 +60,31 @@ const Notifications = () => {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Post Notification</h2>
+    <div className="p-4 sm:p-6 max-w-4xl mx-auto">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Post Notification</h2>
 
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow mb-10 space-y-4">
+      <form onSubmit={handleSubmit} className="bg-white p-4 sm:p-6 rounded shadow mb-6 sm:mb-10 space-y-3 sm:space-y-4">
         <input
           type="text"
           placeholder="Title"
           required
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-          className="w-full border px-4 py-2 rounded"
+          className="w-full border px-3 sm:px-4 py-1 sm:py-2 rounded text-sm sm:text-base"
         />
         <textarea
           placeholder="Message"
           required
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full border px-4 py-2 rounded"
-          rows="4"
+          className="w-full border px-3 sm:px-4 py-1 sm:py-2 rounded text-sm sm:text-base"
+          rows="3 sm:rows-4"
         />
         <select
           required
           value={formData.hostel}
           onChange={(e) => setFormData({ ...formData, hostel: e.target.value })}
-          className="w-full border px-4 py-2 rounded"
+          className="w-full border px-3 sm:px-4 py-1 sm:py-2 rounded text-sm sm:text-base"
         >
           <option value="">Select Target</option>
           <option value="all">Whole College</option>
@@ -100,7 +98,7 @@ const Notifications = () => {
           <option value="8">Hostel 8</option>
           <option value="9">Hostel 9</option>
           <option value="10">Hostel 10</option>
-          <option value="11">Hostel 11</option>``
+          <option value="11">Hostel 11</option>
           <option value="12">Hostel 12</option>
           <option value="13">Hostel 13</option>
         </select>
@@ -108,29 +106,29 @@ const Notifications = () => {
           type="file"
           accept="application/pdf"
           onChange={(e) => setPdf(e.target.files[0])}
-          className="w-full"
+          className="w-full text-xs sm:text-sm"
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+          className="bg-blue-600 text-white px-4 sm:px-6 py-1 sm:py-2 rounded hover:bg-blue-700 disabled:opacity-50 text-sm sm:text-base"
         >
           {loading ? "Posting..." : "Post Notification"}
         </button>
       </form>
 
-      <h3 className="text-xl font-semibold mb-4">Posted Notifications</h3>
+      <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Posted Notifications</h3>
       {notifications.length === 0 ? (
-        <p className="text-gray-500">No notifications found.</p>
+        <p className="text-gray-500 text-sm sm:text-base">No notifications found.</p>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {notifications.map(notif => (
-            <div key={notif._id} className="border bg-gray-50 p-4 rounded shadow-sm">
+            <div key={notif._id} className="border bg-gray-50 p-3 sm:p-4 rounded shadow-sm">
               <div className="flex justify-between items-start">
                 <div>
-                  <h4 className="font-bold text-lg">{notif.title}</h4>
-                  <p className="text-gray-700">{notif.message}</p>
-                  <small className="text-gray-500 block mt-1">
+                  <h4 className="font-bold text-base sm:text-lg">{notif.title}</h4>
+                  <p className="text-gray-700 text-sm sm:text-base">{notif.message}</p>
+                  <small className="text-gray-500 block mt-1 text-xs sm:text-sm">
                     {new Date(notif.createdAt).toLocaleString()}
                   </small>
                   {notif.pdfUrl && (
@@ -138,7 +136,7 @@ const Notifications = () => {
                       href={`http://localhost:5000${notif.pdfUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 text-sm mt-2 inline-block"
+                      className="text-blue-600 text-xs sm:text-sm mt-1 sm:mt-2 inline-block"
                     >
                       📄 View Attachment
                     </a>
@@ -146,7 +144,7 @@ const Notifications = () => {
                 </div>
                 <button
                   onClick={() => handleDelete(notif._id)}
-                  className="text-red-600 hover:text-red-800 text-sm"
+                  className="text-red-600 hover:text-red-800 text-xs sm:text-sm"
                 >
                   ❌ Delete
                 </button>

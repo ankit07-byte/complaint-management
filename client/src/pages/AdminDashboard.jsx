@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import api from '../utils/api';
 import { Link } from 'react-router-dom';
 
-
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
     totalComplaints: 0,
@@ -19,8 +18,8 @@ const AdminDashboard = () => {
     const fetchStats = async () => {
       try {
         const [complaintsRes, feedbackRes] = await Promise.all([
-          api.get('/complaints/admin/all'), // ✅ use your configured api instance
-          api.get('/feedback')              // ✅ includes Authorization header
+          api.get('/complaints/admin/all'),
+          api.get('/feedback')
         ]);
 
         const totalComplaints = complaintsRes.data.count;
@@ -51,7 +50,6 @@ const AdminDashboard = () => {
       }
     };
 
-
     fetchStats();
   }, []);
 
@@ -69,83 +67,80 @@ const AdminDashboard = () => {
         <title>Admin Dashboard | BIT Mesra Complaint System</title>
       </Helmet>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-8">Admin Dashboard</h1>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Admin Dashboard</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-medium text-gray-500">Total Complaints</h3>
-            <p className="text-3xl font-bold text-gray-800 mt-2">{stats.totalComplaints}</p>
+        {/* Stats Cards - Responsive Grid */}
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow">
+            <h3 className="text-base sm:text-lg font-medium text-gray-500">Total Complaints</h3>
+            <p className="text-2xl sm:text-3xl font-bold text-gray-800 mt-1 sm:mt-2">{stats.totalComplaints}</p>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-medium text-gray-500">Pending Complaints</h3>
-            <p className="text-3xl font-bold text-yellow-600 mt-2">{stats.pendingComplaints}</p>
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow">
+            <h3 className="text-base sm:text-lg font-medium text-gray-500">Pending Complaints</h3>
+            <p className="text-2xl sm:text-3xl font-bold text-yellow-600 mt-1 sm:mt-2">{stats.pendingComplaints}</p>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-medium text-gray-500">Resolved Complaints</h3>
-            <p className="text-3xl font-bold text-green-600 mt-2">{stats.resolvedComplaints}</p>
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow">
+            <h3 className="text-base sm:text-lg font-medium text-gray-500">Resolved Complaints</h3>
+            <p className="text-2xl sm:text-3xl font-bold text-green-600 mt-1 sm:mt-2">{stats.resolvedComplaints}</p>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-medium text-gray-500">Avg. Feedback Rating</h3>
-            <p className="text-3xl font-bold text-blue-600 mt-2">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow">
+            <h3 className="text-base sm:text-lg font-medium text-gray-500">Avg. Rating</h3>
+            <p className="text-2xl sm:text-3xl font-bold text-blue-600 mt-1 sm:mt-2">
               {stats.averageRating}/5
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow">
-            {/* <Link
-              to="/notifications"
-              className="block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-center rounded-md transition"
-            >
-              📢Post Notification
-            </Link> */}
-
-            <h3 className="text-lg font-medium text-gray-800 mb-4">Quick Actions</h3>
-            <div className="space-y-3">
+        {/* Bottom Section - Responsive Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Quick Actions */}
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow">
+            <h3 className="text-lg font-medium text-gray-800 mb-3 sm:mb-4">Quick Actions</h3>
+            <div className="space-y-2 sm:space-y-3">
               <Link
                 to="/notifications"
-                className="block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-gray-700 transition"
+                className="block px-3 py-2 sm:px-4 sm:py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-gray-700 transition text-sm sm:text-base"
               >
-                📢Post Notification
+                📢 Post Notification
               </Link>
 
               <Link
                 to="/view-complaints"
-                className="block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-gray-700 transition"
+                className="block px-3 py-2 sm:px-4 sm:py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-gray-700 transition text-sm sm:text-base"
               >
                 View All Complaints
               </Link>
 
               <Link
                 to="/view-complaints?type=College"
-                className="block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-gray-700 transition"
+                className="block px-3 py-2 sm:px-4 sm:py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-gray-700 transition text-sm sm:text-base"
               >
                 View College Complaints
               </Link>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-medium text-gray-800 mb-4">Recent Feedback</h3>
+          {/* Recent Feedback */}
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow">
+            <h3 className="text-lg font-medium text-gray-800 mb-3 sm:mb-4">Recent Feedback</h3>
             {stats.totalFeedback === 0 ? (
-              <p className="text-gray-500">No feedback submitted yet</p>
+              <p className="text-gray-500 text-sm sm:text-base">No feedback submitted yet</p>
             ) : (
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <div className="text-yellow-400 text-xl">★★★★★</div>
-                  <div className="ml-3">
-                    <p className="text-sm text-gray-600">"The complaint was resolved very quickly. Excellent service!"</p>
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-start">
+                  <div className="text-yellow-400 text-lg sm:text-xl">★★★★★</div>
+                  <div className="ml-2 sm:ml-3">
+                    <p className="text-xs sm:text-sm text-gray-600">"The complaint was resolved very quickly. Excellent service!"</p>
                   </div>
                 </div>
-                <div className="flex items-center">
-                  <div className="text-yellow-400 text-xl">★★★☆☆</div>
-                  <div className="ml-3">
-                    <p className="text-sm text-gray-600">"It took some time but the issue was finally resolved."</p>
+                <div className="flex items-start">
+                  <div className="text-yellow-400 text-lg sm:text-xl">★★★☆☆</div>
+                  <div className="ml-2 sm:ml-3">
+                    <p className="text-xs sm:text-sm text-gray-600">"It took some time but the issue was finally resolved."</p>
                   </div>
                 </div>
               </div>
