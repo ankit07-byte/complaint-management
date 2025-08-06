@@ -24,7 +24,7 @@ const app = express();
 app.use(helmet());
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://complaint-management-l0y6sfrnb-ankit07-bytes-projects.vercel.app' // your Vercel frontend URL
+  'https://complaint-management-plum.vercel.app' // your Vercel frontend URL
 ];
 
 app.use(cors({
