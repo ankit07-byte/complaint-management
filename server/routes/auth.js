@@ -45,5 +45,7 @@ router.post('/logout', authController.logout);
 router.post('/forgot-password', authController.forgotPassword);
 router.post('/reset-password', authController.resetPassword);
 router.get('/check-auth', authMiddleware, authController.checkAuth);
+router.post('/resend-otp', authController.resendStudentOtp);
+
 
 module.exports = router;

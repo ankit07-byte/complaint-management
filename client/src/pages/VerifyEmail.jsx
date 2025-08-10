@@ -51,6 +51,19 @@ const VerifyEmail = () => {
       setLoading(false);
     }
   };
+  const handleResendOtp = async () => {
+  try {
+    const endpoint = role === 'student' 
+      ? '/auth/resend-otp' 
+      : '/auth/resend-authority-otp';
+
+    const response = await api.post(endpoint, { email });
+    toast.success(response.data.message || "OTP resent successfully");
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Failed to resend OTP");
+  }
+};
+
 
   return (
     <>
@@ -113,7 +126,7 @@ const VerifyEmail = () => {
 
               <div className="mt-4 sm:mt-6">
                 <button
-                  onClick={() => navigate(role === 'student' ? '/student-signup' : '/authority-signup')}
+                  onClick={handleResendOtp}
                   className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-xs sm:text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   Resend OTP

@@ -544,6 +544,25 @@ exports.checkAuth = async (req, res) => {
     res.status(500).json({ success: false, message: 'Logout failed', error: error.message });
   }
 };
+exports.resendStudentOtp = async (req, res) => {
+  const { email } = req.body;
+  const student = await Student.findOne({ email });
+  if (!student) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  
+  // Generate new OTP
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  student.otp = otp;
+  student.otpExpiry = Date.now() + 15 * 60 * 1000; // 15 min expiry
+  await student.save();
+
+  // Send OTP via email
+  await sendEmail(email, "Your OTP Code", `Your OTP is: ${otp}`);
+
+  res.json({ message: "OTP resent successfully" });
+};
+
 
 
   
