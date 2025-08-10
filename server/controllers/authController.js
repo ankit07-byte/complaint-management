@@ -558,7 +558,7 @@ exports.resendStudentOtp = async (req, res) => {
   await student.save();
 
   // Send OTP via email
-  await sendEmail(email, "Your OTP Code", `Your OTP is: ${otp}`);
+   await sendVerificationEmail(email, otp);
 
   res.json({ message: "OTP resent successfully" });
 };
