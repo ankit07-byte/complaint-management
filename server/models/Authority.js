@@ -24,7 +24,7 @@ const authoritySchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide your mobile number'],
     match: [
-      /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/,
+      /^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$/,
       'Please provide a valid Indian mobile number'
     ]
   },

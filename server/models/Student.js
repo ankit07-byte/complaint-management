@@ -31,10 +31,11 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide your mobile number'],
     match: [
-      /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/,
-      'Please provide a valid Indian mobile number'
+      /^(\+91[\-\s]?)?[0]?[6-9]\d{9}$/,
+      'Please provide a Indian mobile number'
     ]
   },
+  
   session: {
     type: String,
     required: [true, 'Please provide your academic session'],

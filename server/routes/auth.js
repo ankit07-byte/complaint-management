@@ -9,7 +9,13 @@ router.post('/student-signup', [
   check('name', 'Name is required').not().isEmpty(),
   check('rollNo', 'Roll number is required').not().isEmpty(),
   check('email', 'Please include a valid BIT Mesra email').isEmail().matches(/@bitmesra\.ac\.in$/),
-  check('mobile', 'Please provide a valid Indian mobile number').matches(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/),
+ 
+  check('mobile', 'Invalid mobile number')
+  .trim()
+  .matches(/^(\+91[\-\s]?)?[0]?[6-9]\d{9}$/),
+  
+
+
   check('session', 'Please provide session in format YYYY-YY').matches(/^\d{4}-\d{2}$/),
   check('department', 'Please select your department').not().isEmpty(),
   check('password', 'Password must be at least 8 characters').isLength({ min: 8 })
@@ -22,7 +28,8 @@ router.post('/student-login', authController.studentLogin);
 router.post('/authority-signup', [
   check('name', 'Name is required').not().isEmpty(),
   check('email', 'Please include a valid BIT Mesra email').isEmail().matches(/@bitmesra\.ac\.in$/),
-  check('mobile', 'Please provide a valid Indian mobile number').matches(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/),
+  check('mobile', 'Please provide a valid Indian mobile number').matches(/^(\+91)?[6-9]\d{9}$/),
+
   check('designation', 'Please select your designation').not().isEmpty(),
   check('password', 'Password must be at least 8 characters').isLength({ min: 8 })
 ], authController.authoritySignup);
