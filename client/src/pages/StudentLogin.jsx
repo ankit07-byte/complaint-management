@@ -19,7 +19,17 @@ const StudentLogin = () => {
       await login(email, password, 'student');
       navigate('/student-dashboard');
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Login failed. Please check your credentials.');
+      const message = error.response?.data?.message || 'Login failed';
+    
+      if (message === "User does not exist") {
+        toast.error("User does not exist. Please sign up.");
+      } else if (message === "Incorrect password") {
+        toast.error("Incorrect password. Please try again.");
+      } else if (message === "Please verify your email first") {
+        toast.error(message);
+      } else {
+        toast.error(message);
+      }
     } finally {
       setLoading(false);
     }
