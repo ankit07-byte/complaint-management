@@ -11,7 +11,7 @@ const Home = () => {
       
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <div className="bg-blue-500 text-white pt-6 pb-12 sm:py-20">
+        <div className="bg-blue-800 text-white pt-6 pb-12 sm:py-20">
           <div className="container mx-auto px-4 sm:px-6 text-center">
             <div>
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
