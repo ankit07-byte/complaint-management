@@ -1,10 +1,2 @@
-# Node modules
-node_modules/
-
-# Environment files
+node_modules
 .env
-client/.env
-server/.env
-
-# Specific seed files
-server/seedAdmin.js

@@ -6,28 +6,28 @@ const teamMembers = [
     role: 'Full stack Developer',
     github: 'https://github.com/ankit07-byte',
     linkedin: 'https://www.linkedin.com/in/ankitpandey07/',
-    avatar: 'https://i.pravatar.cc/150?img=1',
+    avatar: '/ankit.jpg',
   },
   {
     name: 'Suraj Kumar',
     role: 'Full stack Developer',
     github: 'https://github.com/Suraj7170',
     linkedin: 'https://www.linkedin.com/in/suraj-kumar-688b75263/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-    avatar: 'https://i.pravatar.cc/150?img=1',
+    avatar: '/suraj.jpg',
   },
   {
     name: 'Vineet Singh',
     role: 'Full stack Developer',
     github: 'https://github.com/Vineet-s-ingh',
     linkedin: 'https://www.linkedin.com/in/vineet-singh-98a471273?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-    avatar: 'https://i.pravatar.cc/150?img=2',
+    avatar: '/vineet.jpg',
   },
   {
     name: 'Dayanand Mishra',
-    role: 'Full stack Designer',
-    github: 'https://github.com/amitverma',
-    linkedin: 'https://linkedin.com/in/amitverma',
-    avatar: 'https://i.pravatar.cc/150?img=3',
+    role: 'Full stack Developer',
+    github: 'https://github.com/techmillionare',
+    linkedin: 'https://www.linkedin.com/in/dayanand-mishra-contactdayanand/',
+    avatar: '/dayanand.jpg',
   }
 ];
 

@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 dotenv.config(); // Load from .envh
 
-// Make sure the path is correct
+// Make sure the path is correcte3
 const Admin = require('./models/Admin'); 
 
 const createAdmin = async () => {
