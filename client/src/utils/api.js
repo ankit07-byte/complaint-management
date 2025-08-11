@@ -24,9 +24,17 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // Handle unauthorized access
-      localStorage.removeItem('token');
-      window.location = '/';
+      const originalUrl = error.config?.url || '';
+      const authEndpoints = [
+        '/auth/student-login',
+        '/auth/authority-login',
+        '/auth/admin-login'
+      ];
+      const shouldForceLogout = !authEndpoints.some((endpoint) => originalUrl.includes(endpoint));
+      if (shouldForceLogout) {
+        localStorage.removeItem('token');
+        window.location = '/';
+      }
     }
     return Promise.reject(error);
   }

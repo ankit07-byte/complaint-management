@@ -25,7 +25,8 @@ const Navbar = () => {
   }, [justLoggedOut, user, loading, navigate]);
 
   return (
-    <nav className="bg-blue-800 text-white shadow-lg">
+    <>
+      <nav className="bg-blue-800 text-white shadow-lg">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center justify-between w-full md:w-auto">
           
@@ -160,7 +161,11 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-blue-800 z-20 py-4 pb-8 border-blue-300/20 px-4 shadow-lg">
+          <>
+            {/* Background blur overlay */}
+            <div className="fixed inset-0 top-16 bg-black/30 backdrop-blur-sm z-10 md:hidden" onClick={() => setIsMobileMenuOpen(false)}></div>
+            {/* Mobile navigation panel */}
+            <div className="md:hidden rounded-b-3xl fixed top-16 left-0 right-0 bg-blue-800 z-20 py-4 pb-8 border-blue-300/20 px-4 shadow-lg">
             <div className="flex flex-col space-y-4">
               <Link 
                 to="/student-notifications" 
@@ -286,10 +291,14 @@ const Navbar = () => {
                 </>
               )}
             </div>
-          </div>
+            </div>
+          </>
         )}
       </div>
-    </nav>
+      </nav>
+      {/* Glass-like separator below navbar */}
+      <div className="w-full h-px bg-white/10 backdrop-blur-md"></div>
+    </>
   );
 };
 
