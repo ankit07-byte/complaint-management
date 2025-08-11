@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Serve uploaded PDFs statically
-app.use('/uploads', require('express').static(path.join(__dirname, '/uploads')));
+app.use('/api/uploads', require('express').static(path.join(__dirname, '/uploads')));
 
 // Start server
 app.listen(PORT, () => {
