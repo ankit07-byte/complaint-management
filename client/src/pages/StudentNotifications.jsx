@@ -10,7 +10,8 @@ const StudentNotifications = () => {
     const fetchNotifications = async () => {
       const hostel = user?.hostelNo || 'all'; 
       try {
-        const res = await axios.get(`http://localhost:5000/api/notifications/${hostel}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/notifications/${hostel}`);
+
         setNotifications(res.data);
       } catch (err) {
         console.error('Error fetching notifications', err);
