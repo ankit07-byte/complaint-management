@@ -1,24 +1,28 @@
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../context/AuthContext';
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
+
+// Base URL from environment variable (falls back to localhost in dev)
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const StudentNotifications = () => {
   const [notifications, setNotifications] = useState([]);
-  const { user } = useContext(AuthContext); 
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      const hostel = user?.hostelNo || 'all'; 
+      const hostel = user?.hostelNo || "all";
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/notifications/${hostel}`);
-
+        const res = await axios.get(`${API_BASE_URL}/api/notifications/${hostel}`);
         setNotifications(res.data);
       } catch (err) {
-        console.error('Error fetching notifications', err);
+        console.error("Error fetching notifications", err);
       }
     };
 
-    fetchNotifications();
+    if (user) {
+      fetchNotifications();
+    }
   }, [user]);
 
   return (
@@ -28,14 +32,19 @@ const StudentNotifications = () => {
         <p className="text-sm sm:text-base">No notifications available.</p>
       ) : (
         notifications.map((notif) => (
-          <div key={notif._id} className="border p-2 sm:p-3 mb-2 sm:mb-3 rounded bg-gray-50">
+          <div
+            key={notif._id}
+            className="border p-2 sm:p-3 mb-2 sm:mb-3 rounded bg-gray-50"
+          >
             <h3 className="font-semibold text-sm sm:text-base">{notif.title}</h3>
             <p className="text-xs sm:text-sm">{notif.message}</p>
-            <small className="text-gray-500 text-xs sm:text-sm">{new Date(notif.createdAt).toLocaleString()}</small>
+            <small className="text-gray-500 text-xs sm:text-sm">
+              {new Date(notif.createdAt).toLocaleString()}
+            </small>
             {notif.pdfUrl && (
               <div>
                 <a
-                  href={`http://localhost:5000${notif.pdfUrl}`}
+                  href={`${API_BASE_URL}${notif.pdfUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 text-xs sm:text-sm block mt-1"
