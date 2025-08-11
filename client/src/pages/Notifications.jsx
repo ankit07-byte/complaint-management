@@ -17,7 +17,7 @@ const Notifications = () => {
 
   const fetchNotifications = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/notifications/${currentHostel}`);
+      const res = await axios.get(`${API_BASE_URL}/notifications/${currentHostel}`);
       setNotifications(res.data);
     } catch (err) {
       console.error(err);
@@ -39,7 +39,7 @@ const Notifications = () => {
 
     try {
       setLoading(true);
-      await axios.post(`${API_BASE_URL}/api/notifications`, data);
+      await axios.post(`${API_BASE_URL}/notifications`, data);
       toast.success("Notification posted!");
       setFormData({ title: "", message: "", hostel: "" });
       setPdf(null);
@@ -54,7 +54,7 @@ const Notifications = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this notification?")) return;
     try {
-      await axios.delete(`${API_BASE_URL}/api/notifications/${id}`);
+      await axios.delete(`${API_BASE_URL}/notifications/${id}`);
       toast.success("Notification deleted");
       setNotifications(notifications.filter((n) => n._id !== id));
     } catch (err) {

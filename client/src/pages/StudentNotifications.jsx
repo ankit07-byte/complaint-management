@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
 // Base URL from environment variable (falls back to localhost in dev)
+// ✅ Keep this as the backend root URL, without `/api` at the end
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const StudentNotifications = () => {
@@ -13,7 +14,8 @@ const StudentNotifications = () => {
     const fetchNotifications = async () => {
       const hostel = user?.hostelNo || "all";
       try {
-        const res = await axios.get(`${API_BASE_URL}/api/notifications/${hostel}`);
+        // ✅ Only add `/api` here, so we never get `/api/api`
+        const res = await axios.get(`${API_BASE_URL}/notifications/${hostel}`);
         setNotifications(res.data);
       } catch (err) {
         console.error("Error fetching notifications", err);
