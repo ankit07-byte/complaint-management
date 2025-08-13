@@ -64,12 +64,14 @@ const Navbar = () => {
 
           {!user ? (
             <>
-              <div className="relative group">
+             <div className="relative group">
                 <button className="px-3 flex items-center space-x-2 py-2 rounded-3xl bg-blue-700 hover:bg-blue-600 transition-colors">
                   <FaUser />
                   <span>Student</span>
                 </button>
-                <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
+
+                <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg py-1 z-50
+                                opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <Link 
                     to="/student-login" 
                     className="block px-4 py-2 hover:bg-blue-100"
@@ -83,27 +85,28 @@ const Navbar = () => {
                     Signup
                   </Link>
                 </div>
-              </div>
+           </div>
 
-              <div className="relative group">
-                <button className="px-3 py-2 rounded-3xl bg-blue-700 hover:bg-blue-600 transition-colors">
-                  Authority
-                </button>
-                <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
-                  <Link 
-                    to="/authority-login" 
-                    className="block px-4 py-2 hover:bg-blue-100"
-                  >
-                    Login
-                  </Link>
-                  <Link 
-                    to="/authority-signup" 
-                    className="block px-4 py-2 hover:bg-blue-100"
-                  >
-                    Signup
-                  </Link>
+
+             <div className="relative group">
+                  <button className="px-3 flex items-center space-x-2 py-2 rounded-3xl bg-blue-700 hover:bg-blue-600 transition-colors focus:outline-none">
+                    Authority
+                  </button>
+                  <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <Link 
+                      to="/authority-login" 
+                      className="block px-4 py-2 hover:bg-blue-100"
+                    >
+                      Login
+                    </Link>
+                    <Link 
+                      to="/authority-signup" 
+                      className="block px-4 py-2 hover:bg-blue-100"
+                    >
+                      Signup
+                    </Link>
+                  </div>
                 </div>
-              </div>
 
               <Link 
                 to="/admin-login" 
