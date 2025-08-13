@@ -41,8 +41,14 @@ const StudentLogin = () => {
         <title>Student Login | BIT Mesra Complaint System</title>
       </Helmet>
       
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+      <div 
+        className="min-h-screen flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8 bg-cover bg-center relative"
+        style={{ backgroundImage: "url('/hostel.jpg')" }}
+      >
+        {/* Overlay for better text visibility */}
+        <div className="absolute inset-0 bg-black/40"></div>
+
+        <div className="relative sm:mx-auto sm:w-full sm:max-w-md">
           <div className="flex justify-center">
             <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-blue-600 flex items-center justify-center">
               <svg 
@@ -61,21 +67,21 @@ const StudentLogin = () => {
               </svg>
             </div>
           </div>
-          <h2 className="mt-4 sm:mt-6 text-center text-2xl sm:text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-4 sm:mt-6 text-center text-2xl sm:text-3xl font-extrabold text-white">
             Student Login
           </h2>
-          <p className="mt-2 text-center text-xs sm:text-sm text-gray-600">
+          <p className="mt-2 text-center text-xs sm:text-sm text-gray-200">
             Don't have an account?{' '}
             <Link 
               to="/student-signup" 
-              className="font-medium text-blue-600 hover:text-blue-500"
+              className="font-medium text-blue-200 hover:text-blue-100"
             >
               Sign up
             </Link>
           </p>
         </div>
 
-        <div className="mt-6 sm:mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="relative mt-6 sm:mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-6 px-4 shadow sm:rounded-lg sm:px-8 sm:py-8">
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               <div>

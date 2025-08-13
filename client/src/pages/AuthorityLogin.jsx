@@ -32,12 +32,35 @@ const AuthorityLogin = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Helmet>
       
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-2 text-center text-2xl sm:text-3xl font-extrabold text-gray-900">
+      <div 
+  className="min-h-screen bg-gray-50 flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8 bg-cover bg-center" 
+  style={{ backgroundImage: "url('/hostel.jpg')" }}
+>
+
+        
+           <div className="relative sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="flex justify-center">
+            <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-blue-600 flex items-center justify-center">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-6 sm:h-8 w-6 sm:w-8 text-white" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" 
+                />
+              </svg>
+            </div>
+          </div>
+          <h2 className="mt-2 text-center text-2xl sm:text-3xl font-extrabold text-white">
             Authority Login
           </h2>
-          <p className="mt-2 text-center text-xs sm:text-sm text-gray-600">
+          <p className="mt-2 text-center text-xs sm:text-sm text-white">
             Don't have an account?{' '}
             <Link to="/authority-signup" className="font-medium text-blue-600 hover:text-blue-500">
               Sign up

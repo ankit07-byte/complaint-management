@@ -11,8 +11,14 @@ const Home = () => {
       
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <div className="bg-blue-800 text-white pt-6 pb-12 sm:py-20">
-          <div className="container mx-auto px-4 sm:px-6 text-center">
+        <div 
+          className="relative text-white pt-6 pb-12 sm:py-20 bg-cover bg-center"
+          style={{ backgroundImage: "url('/bitmesra.jpg')" }}
+        >
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-red-800/30"></div>
+
+          <div className="relative container mx-auto px-4 sm:px-6 text-center">
             <div>
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <img 
